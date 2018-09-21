@@ -46,7 +46,8 @@
 #define ZBI_CONTAINER_MAGIC     (0x868cf7e6)
 
 // LSW of sha256("bootitem")
-#define ZBI_ITEM_MAGIC          (0xb5781729)
+// #define ZBI_ITEM_MAGIC          (0xb5781729)
+#define ZBI_ITEM_MAGIC          (0x644d5241)
 
 // This flag is always required.
 #define ZBI_FLAG_VERSION        (0x00010000)

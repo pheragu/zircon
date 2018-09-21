@@ -44,7 +44,7 @@ SHIM_CFLAGS += -mstrict-align
 
 # for including target specific headers
 SHIM_INCLUDES += -Ikernel/target/arm64/board/$(PLATFORM_BOARD_NAME)
-
+$(warning "SHIM_INCLUDES" $(SHIM_INCLUDES))
 # capture board specific variables for the build rules
 $(BOOT_SHIM_BIN): BOOT_SHIM_BUILDDIR:=$(BOOT_SHIM_BUILDDIR)
 $(BOOT_SHIM_BIN): BOOT_SHIM_OBJS:=$(BOOT_SHIM_OBJS)

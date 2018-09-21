@@ -3,7 +3,7 @@
 # Use of this source code is governed by a MIT-style
 # license that can be found in the LICENSE file or at
 # https://opensource.org/licenses/MIT
-
+$(warning "SHIM USED" ,$(PLATFORM_USE_SHIM))
 ifeq ($(PLATFORM_USE_SHIM),true)
 
 ifeq ($(PLATFORM_BOARD_NAME),)

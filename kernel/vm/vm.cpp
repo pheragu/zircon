@@ -88,7 +88,7 @@ void vm_init_preheap() {
         MarkPagesInUsePhys(boot_alloc_start, boot_alloc_end - boot_alloc_start);
     }
 
-#if !DISABLE_KASLR // Disable random memory padding for KASLR
+/*#if !DISABLE_KASLR // Disable random memory padding for KASLR
     // Reserve up to 15 pages as a random padding in the kernel physical mapping
     uchar entropy;
     crypto::GlobalPRNG::GetInstance()->Draw(&entropy, sizeof(entropy));
@@ -99,7 +99,7 @@ void vm_init_preheap() {
     DEBUG_ASSERT(page_count == allocated);
     LTRACEF("physical mapping padding page count %#" PRIxPTR "\n", page_count);
 #endif
-
+*/
     // grab a page and mark it as the zero page
     zero_page = pmm_alloc_page(0, &zero_page_paddr);
     DEBUG_ASSERT(zero_page);

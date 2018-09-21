@@ -469,6 +469,7 @@ FORCE:
 ifndef TARGET
 $(error couldn't find project "$(PROJECT)" or project doesn't define target)
 endif
+$(warning "TARGET" $(TARGET) $(PROJECT) $(PLATFORM))
 include kernel/target/$(TARGET)/rules.mk
 ifndef PLATFORM
 $(error couldn't find target or target doesn't define platform)

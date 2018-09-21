@@ -9,14 +9,17 @@
 # include fastboot header in start.S
 KERNEL_DEFINES += FASTBOOT_HEADER=1
 
-OUTLKZIMAGE := $(BUILDDIR)/z$(LKNAME).bin
+DEVICE_TREE := /local/mnt/workspace/latest_fuchsia/zircon/kernel/target/arm64/board/sdm845/device-tree.dtb
+OUTKERNELIMAGE := $(BUILDDIR)/sdm845-zircon-bootimage.bin
+OUTLKZIMAGE := $(BUILDDIR)/sdm845-zzircon.bin
 OUTLKZIMAGE_DTB := $(OUTLKZIMAGE)-dtb
 
 GENERATED += $(OUTLKZIMAGE) $(OUTLKZIMAGE_DTB)
 
 # rule for gzipping the kernel
-$(OUTLKZIMAGE): $(OUTLKBIN)
+$(OUTLKZIMAGE): $(OUTKERNELIMAGE)
 	$(call BUILDECHO,gzipping image $@)
+	$(warning "HERE" $(OUTKERNELIMAGE))
 	$(NOECHO)gzip -c $< > $@
 
 # rule for appending device tree

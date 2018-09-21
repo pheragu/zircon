@@ -1,0 +1,16 @@
+/dts-v1/;
+
+/ {
+    model = "Qualcomm Technologies, Inc. MSM sdm845 V2 MTP";
+    compatible = "qcom,sdm845";
+    qcom,msm-id = <321 0x20000>;
+    qcom,board-id = <8 0>;
+    qcom,pmic-id = <0x20014 0x20115 0x20018 0x0>;	
+
+    chosen {
+        bootargs = "TERM=uart";
+    };
+
+    // empty node needed to make fastboot happy
+    memory {};
+};

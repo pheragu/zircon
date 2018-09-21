@@ -1830,6 +1830,7 @@ int main(int argc, char** argv) {
                               kOptString, kLongOpts, nullptr)) != -1) {
         // A non-option argument (1) is an input, handled below.
         // All other cases continue the loop and don't break the switch.
+                fprintf(stderr, "opt %d %c\n",opt, opt);
         switch (opt) {
         case 1:
             break;
@@ -1916,7 +1917,7 @@ int main(int argc, char** argv) {
                 complete_arch = ZBI_TYPE_KERNEL_ARM64;
             } else {
                 fprintf(stderr, "--complete architecture argument must be one"
-                        " of: x64, arm64\n");
+                        " of: x64, arm64 %s\n",optarg);
                 exit(1);
             }
             continue;

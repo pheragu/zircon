@@ -182,8 +182,9 @@ $(ZIRCON_BOOTIMAGE): \
     $(USER_MANIFEST) $(USER_MANIFEST_DEPS) \
     $(ADDITIONAL_BOOTDATA_ITEMS)
 	$(call BUILDECHO,generating $@)
+	$(warning "READING " $(ZIRCON_BOOTIMAGE) $(PROJECT) $(KERNEL_ZBI) $(USER_MANIFEST_GROUPS) $(USER_MANIFEST) $(ADDITIONAL_BOOTDATA_ITEMS))
 	@$(MKDIR)
-	$(NOECHO)$< -o $@ --complete=$(PROJECT) $(KERNEL_ZBI) \
+	$(NOECHO)$< -o $@ --complete=$(ARCH) $(KERNEL_ZBI) \
 		    $(USER_MANIFEST_GROUPS) $(USER_MANIFEST) \
 		    $(ADDITIONAL_BOOTDATA_ITEMS)
 GENERATED += $(ZIRCON_BOOTIMAGE)
@@ -197,6 +198,7 @@ kernel: image
 .PHONY: legacy
 kernel: legacy
 legacy: $(BUILDDIR)/zircon.bin $(BUILDDIR)/bootdata.bin
+#legacy: $(BUILDDIR)/zircon.bin
 $(BUILDDIR)/zircon.bin: $(KERNEL_ZBI)
 	$(call BUILDECHO,compat kernel name $@)
 	$(NOECHO)ln -f $< $@

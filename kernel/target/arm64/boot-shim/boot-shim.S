@@ -20,7 +20,6 @@ tmp             .req x16
 .section .text.boot0,"ax"
 FUNCTION(_start)
     // x0 typically points to device tree at entry
-
    // what EL are we running at?
     mrs     tmp, CurrentEL
     cmp     tmp, #(1 << 2)
