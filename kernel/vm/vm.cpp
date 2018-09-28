@@ -39,6 +39,8 @@ namespace {
 // mark a range of physical pages as WIRED
 void MarkPagesInUsePhys(paddr_t pa, size_t len) {
     LTRACEF("pa %#" PRIxPTR ", len %#zx\n", pa, len);
+    dprintf(INFO, "VM: marking boot alloc used range [%#" PRIxPTR ", %#" PRIxPTR ")\n", boot_alloc_start,
+                boot_alloc_end);
 
     // make sure we are inclusive of all of the pages in the address range
     len = PAGE_ALIGN(len + (pa & (PAGE_SIZE - 1)));

@@ -60,9 +60,9 @@ static bool dlog_bypass_ = false;
 
 // Called first thing in init, so very early printfs can go to serial console.
 void dlog_bypass_init_early(void) {
-#ifdef ENABLE_KERNEL_LL_DEBUG
-    dlog_bypass_ = true;
-#endif
+//#ifdef ENABLE_KERNEL_LL_DEBUG
+    dlog_bypass_ = false;
+//#endif
 }
 
 // Called after kernel cmdline options are parsed (in platform_early_init()).
@@ -70,6 +70,7 @@ void dlog_bypass_init_early(void) {
 void dlog_bypass_init(void) {
     if (dlog_bypass_ == false)
         dlog_bypass_ = cmdline_get_bool("kernel.bypass-debuglog", false);
+    dlog_bypass_ = false;
 }
 
 bool dlog_bypass(void) {

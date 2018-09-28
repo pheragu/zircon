@@ -131,7 +131,7 @@ static zx_status_t arm_gic_init(void) {
     if (pidr2 != 0) {
         uint rev = BITS_SHIFT(pidr2, 7, 4);
         if (rev != GICV2) {
-            return ZX_ERR_NOT_FOUND;
+           // return ZX_ERR_NOT_FOUND;
         }
     } else {
         // some v2's return a null PIDR2

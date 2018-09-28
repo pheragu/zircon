@@ -9,7 +9,8 @@
 # include fastboot header in start.S
 KERNEL_DEFINES += FASTBOOT_HEADER=1
 
-DEVICE_TREE := /local/mnt/workspace/latest_fuchsia/zircon/kernel/target/arm64/board/sdm845/device-tree.dtb
+DEVICE_TREE := /local/mnt/workspace/latest_fuchsia/zircon/kernel/target/arm64/board/sdm845/mlvm_device-tree.dtb
+#DEVICE_TREE := /local/mnt/workspace/latest_fuchsia/zircon/kernel/target/arm64/board/sdm845/device-tree.dtb
 OUTKERNELIMAGE := $(BUILDDIR)/sdm845-zircon-bootimage.bin
 OUTLKZIMAGE := $(BUILDDIR)/sdm845-zzircon.bin
 OUTLKZIMAGE_DTB := $(OUTLKZIMAGE)-dtb

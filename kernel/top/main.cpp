@@ -94,6 +94,7 @@ void lk_main() {
 
     // become the idle thread and enable interrupts to start the scheduler
     thread_become_idle();
+    dprintf(SPEW, "completion thread\n");
 }
 
 static int bootstrap2(void*) {

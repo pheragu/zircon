@@ -16,7 +16,7 @@
 
 #define LOCAL_TRACE MAX(VM_GLOBAL_TRACE, 0)
 
-static const size_t NUM_RESERVES = 16;
+static const size_t NUM_RESERVES = 32;
 static reserve_range_t res[NUM_RESERVES];
 static size_t res_idx;
 
@@ -29,6 +29,7 @@ zx_status_t boot_reserve_add_range(paddr_t pa, size_t len) {
     dprintf(INFO, "PMM: boot reserve add [%#" PRIxPTR ", %#" PRIxPTR "]\n", pa, pa + len - 1);
 
     if (res_idx == NUM_RESERVES) {
+    //dprintf(INFO, "PANIC PMM: boot reserve add [%#" PRIxPTR ", %#" PRIxPTR "]\n", pa, pa + len - 1);
         panic("too many boot reservations\n");
     }
 

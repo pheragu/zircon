@@ -34,6 +34,7 @@ MODULE_DEPS += \
 	kernel/dev/uart/amlogic_s905 \
 	kernel/dev/uart/nxp-imx \
 	kernel/dev/uart/pl011 \
+	kernel/dev/uart/dcc \
 	kernel/dev/hdcp/amlogic_s912 \
 
 include make/module.mk

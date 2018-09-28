@@ -17,6 +17,7 @@
 #define KDRV_NXP_IMX_UART       0x55584D49  // 'IMXU'
 #define KDRV_HISILICON_POWER    0x4F505348  // 'HSPO'
 #define KDRV_AMLOGIC_HDCP       0x484C4D41  // 'AMLH'
+#define KDRV_ARM_DCC            0x2D434344  // 'DCC-'
 
 // kernel driver struct that can be used for simple drivers
 // used by KDRV_PL011_UART, KDRV_AMLOGIC_UART and KDRV_NXP_IMX_UART

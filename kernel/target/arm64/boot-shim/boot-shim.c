@@ -16,11 +16,11 @@
 #include <zircon/boot/driver-config.h>
 
 // uncomment to dump device tree at boot
-// #define PRINT_DEVICE_TREE
+//#define PRINT_DEVICE_TREE
 
 // Uncomment to list ZBI items.
 #ifndef PRINT_ZBI
-#define PRINT_ZBI 0
+#define PRINT_ZBI 1 
 #endif
 
 // used in boot-shim-config.h and in this file below
@@ -67,11 +67,11 @@ typedef struct {
 } device_tree_context_t;
 
 static int node_callback(int depth, const char *name, void *cookie) {
-#ifdef PRINT_DEVICE_TREE
+//#ifdef PRINT_DEVICE_TREE
     uart_puts("node: ");
     uart_puts(name);
     uart_puts("\n");
-#endif
+//#endif
 
     device_tree_context_t* ctx = cookie;
 
@@ -256,7 +256,7 @@ static void list_zbi(zbi_header_t* zbi) {
 }
 
 boot_shim_return_t boot_shim(void* device_tree) {
-    uart_puts("boot_shim: hi there!\n");
+    uart_puts("Boot_shim: hi there!\n");
 
     zircon_kernel_t* kernel = NULL;
 

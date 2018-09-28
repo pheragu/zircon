@@ -23,7 +23,6 @@ DT_ADDR=0x1e00000
 # this can be found at /path/to/kdev/tools/mkbootimg
 $MKBOOTIMG --kernel $KERNEL \
 --base $MEMBASE \
---ramdisk $RAMDISK \
 --ramdisk_offset $RAMDISK_OFFSET \
 --pagesize 4096 \
 --tags_offset $DT_ADDR \

@@ -517,7 +517,7 @@ size_t platform_stow_crashlog(void* log, size_t len) {
 
 size_t platform_recover_crashlog(size_t len, void* cookie,
                                  void (*func)(const void* data, size_t, size_t len, void* cookie)) {
-    size_t max = lastlog_nvram.length - sizeof(log_hdr_t);
+  /*  size_t max = lastlog_nvram.length - sizeof(log_hdr_t);
     void* nvram = paddr_to_physmap(lastlog_nvram.base);
     if (nvram == NULL) {
         return 0;
@@ -543,6 +543,8 @@ size_t platform_recover_crashlog(size_t len, void* cookie,
     hdr.magic = 0;
     memcpy(nvram, &hdr, sizeof(hdr));
     return hdr.length;
+   */
+  	return 0;
 }
 
 zx_status_t platform_mexec_patch_zbi(uint8_t* zbi, const size_t len) {

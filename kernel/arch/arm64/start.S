@@ -42,7 +42,7 @@ FUNCTION(_start)
     cbnz    cpuid, .Lno_save_bootinfo
     /* save x0 in zbi_paddr */
     adrp    tmp, zbi_paddr
-    str     x0, [tmp, #:lo12:zbi_paddr]
+    str     x0, [tmp, #:lo12:zbi_paddr] //str a register value into memory | specifies the register on which memeory address is based
     /* save entry point physical address in kernel_entry_paddr */
     adrp    tmp, kernel_entry_paddr
     adr     tmp2, _start

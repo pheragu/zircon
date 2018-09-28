@@ -23,10 +23,8 @@ static int default_pgetc(void) {
 static void default_start_panic(void) {
 
 }
-
 static void default_dputs(const char* str, size_t len,
                           bool block, bool map_NL) {
-
 }
 
 static const struct pdev_uart_ops default_ops = {

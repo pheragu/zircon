@@ -24,7 +24,6 @@
 #ifndef CONSOLE_ENABLE_HISTORY
 #define CONSOLE_ENABLE_HISTORY 1
 #endif
-
 #define LINE_LEN 128
 
 #define PANIC_LINE_LEN 32
