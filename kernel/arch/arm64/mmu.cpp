@@ -35,7 +35,7 @@
 
 #define LOCAL_TRACE 0
 #define TRACE_CONTEXT_SWITCH 0
-
+#define DISABLE_KASLR 0
 /* ktraces just local to this file */
 #define LOCAL_KTRACE 0
 
