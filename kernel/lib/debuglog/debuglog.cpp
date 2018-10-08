@@ -9,10 +9,10 @@
 #include <dev/udisplay.h>
 #include <err.h>
 #include <fbl/atomic.h>
+#include <kernel/cmdline.h>
 #include <kernel/spinlock.h>
 #include <kernel/thread.h>
 #include <lib/crashlog.h>
-#include <kernel/cmdline.h>
 #include <lib/io.h>
 #include <lib/version.h>
 #include <lk/init.h>
@@ -24,6 +24,7 @@
 
 #define DLOG_SIZE (128u * 1024u)
 #define DLOG_MASK (DLOG_SIZE - 1u)
+#define ENABLE_KERNEL_LL_DEBUG 0
 
 static_assert((DLOG_SIZE & DLOG_MASK) == 0u, "must be power of two");
 static_assert(DLOG_MAX_RECORD <= DLOG_SIZE, "wat");
@@ -192,7 +193,6 @@ zx_status_t dlog_write(uint32_t flags, const void* data_ptr, size_t len) {
             event_signal(&log->event, false);
         }
     }();
-
 
     return ZX_OK;
 }

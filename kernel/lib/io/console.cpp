@@ -23,6 +23,7 @@
 
 #include <lib/debuglog.h>
 
+#define WITH_LIB_DEBUGLOG 1
 /* routines for dealing with main console io */
 
 static SpinLock dputc_spin_lock;
@@ -51,9 +52,15 @@ void __kernel_console_write(const char* str, size_t len) {
     }
 }
 
-static void __kernel_stdout_write(const char *str, size_t len)
-{
-    if (dlog_bypass() == false) {
+static void __kernel_stdout_write(const char* str, size_t len) {
+    bool do_dlog = false;
+
+#if WITH_LIB_DEBUGLOG
+    if (dlog_bypass() == false)
+        do_dlog = true;
+#endif
+
+    if (do_dlog) {
         if (dlog_write(0, str, len) == ZX_OK)
             return;
     }
