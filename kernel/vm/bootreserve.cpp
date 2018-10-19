@@ -16,7 +16,7 @@
 
 #define LOCAL_TRACE MAX(VM_GLOBAL_TRACE, 0)
 
-static const size_t NUM_RESERVES = 16;
+static const size_t NUM_RESERVES = 32;
 static reserve_range_t res[NUM_RESERVES];
 static size_t res_idx;
 

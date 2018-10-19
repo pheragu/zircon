@@ -15,6 +15,92 @@ static const zbi_mem_range_t mem_config[] = {
         .paddr = 0x80000000,
         .length = 0xc0000000, // 3GB
     },
+    {
+        .type = ZBI_MEM_RANGE_PERIPHERAL,
+        .paddr = 0x0,
+        .length = 0x40000000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x85700000,
+        .length = 0x600000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x85e00000,
+        .length = 0x100000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x85fc0000,
+        .length = 0x2f40000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x8ab00000,
+        .length = 0x1400000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x8bf00000,
+        .length = 0x500000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x8c400000,
+        .length = 0x10000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x8c410000,
+        .length = 0x5000,
+    },
+
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x8c415000,
+        .length = 0x2000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x8c500000,
+        .length = 0x1a00000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x8df00000,
+        .length = 0x100000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x8e000000,
+        .length = 0x7800000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x95800000,
+        .length = 0x500000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x95d00000,
+        .length = 0x800000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x96500000,
+        .length = 0x200000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x96700000,
+        .length = 0x1400000,
+    },
+    {
+        .type = ZBI_MEM_RANGE_RESERVED,
+        .paddr = 0x97b00000,
+        .length = 0x100000,
+    },
 };
 
 static void append_board_boot_item(zbi_header_t* bootdata) {
