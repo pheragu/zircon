@@ -103,6 +103,23 @@ static const zbi_mem_range_t mem_config[] = {
     },
 };
 
+static const dcfg_arm_gicv3_driver_t gicv3_driver = {
+    .mmio_phys = 0x17a00000,
+    .gicd_offset = 0x00000,
+    .gicr_offset = 0x060000,
+    .gicr_stride = 0x020000,
+    .ipi_base = 0,
+};
+
+static const dcfg_arm_generic_timer_driver_t timer_driver = {
+    .irq_virt = 19,
+    .freq_override = 19200000,
+};
+
+static const dcfg_arm_psci_driver_t psci_driver = {
+    .use_hvc = true,
+};
+
 static void append_board_boot_item(zbi_header_t* bootdata) {
     // add CPU configuration
     append_boot_item(bootdata, ZBI_TYPE_CPU_CONFIG, 0, &cpu_config,
@@ -112,4 +129,14 @@ static void append_board_boot_item(zbi_header_t* bootdata) {
     // add memory configuration
     append_boot_item(bootdata, ZBI_TYPE_MEM_CONFIG, 0, &mem_config,
                      sizeof(zbi_mem_range_t) * countof(mem_config));
+
+    append_boot_item(bootdata, ZBI_TYPE_KERNEL_DRIVER, KDRV_ARM_GIC_V3,
+                     &gicv3_driver, sizeof(gicv3_driver));
+
+    append_boot_item(bootdata, ZBI_TYPE_KERNEL_DRIVER,
+                     KDRV_ARM_GENERIC_TIMER, &timer_driver,
+                     sizeof(timer_driver));
+
+    append_boot_item(bootdata, ZBI_TYPE_KERNEL_DRIVER, KDRV_ARM_PSCI,
+                     &psci_driver, sizeof(psci_driver));
 }
