@@ -122,4 +122,7 @@ __BEGIN_CDECLS;
 #define PDEV_PID_AMS_TCS3400        1
 #define PDEV_DID_AMS_LIGHT          1
 
+//QCOM
+#define PDEV_VID_QCOM               1
+#define PDEV_PID_SDM845             2
 __END_CDECLS;

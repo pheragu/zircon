@@ -127,6 +127,12 @@ static const dcfg_simple_t wdog_driver = {
     .irq = 32,
 };
 
+static const zbi_platform_id_t platform_id = {
+    .vid = PDEV_VID_QCOM,
+    .pid = PDEV_PID_SDM845,
+    .board_name = "sdm845",
+};
+
 static void append_board_boot_item(zbi_header_t* bootdata) {
     // add CPU configuration
     append_boot_item(bootdata, ZBI_TYPE_CPU_CONFIG, 0, &cpu_config,
@@ -152,4 +158,7 @@ static void append_board_boot_item(zbi_header_t* bootdata) {
 
     append_boot_item(bootdata, ZBI_TYPE_KERNEL_DRIVER, KDRV_ARM_WATCH_DOG,
                      &wdog_driver, sizeof(wdog_driver));
+
+    append_boot_item(bootdata, ZBI_TYPE_PLATFORM_ID, 0, &platform_id,
+                     sizeof(platform_id));
 }
