@@ -16,11 +16,11 @@
 #include <zircon/boot/driver-config.h>
 
 // uncomment to dump device tree at boot
-// #define PRINT_DEVICE_TREE
+#define PRINT_DEVICE_TREE 1
 
 // Uncomment to list ZBI items.
 #ifndef PRINT_ZBI
-#define PRINT_ZBI 0
+#define PRINT_ZBI 1
 #endif
 
 // used in boot-shim-config.h and in this file below
