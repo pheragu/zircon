@@ -7,42 +7,32 @@
 
 #pragma once
 
-#include <stdbool.h>
-#include <stdint.h>
+#include <arch/arm64/periphmap.h>
 #include <kernel/thread.h>
 #include <kernel/timer.h>
+#include <stdbool.h>
+#include <stdint.h>
 #include <zircon/types.h>
 
 #define WATCHDOG_MAGIC 'wdog'
-
-typedef struct watchdog {
-    uint32_t                magic;
-    const char             *name;
-    bool                    enabled;
-    zx_time_t               timeout;
-    timer_t                 expire_timer;
-} watchdog_t;
-
-/* A global weak-reference to the common watchdog handler.  By default, this
- * function will dprintf a message indicating which watchdog fired, and then
- * request a halt using platform_halt, indicating that a SW watchdog was the
- * reason for the reset.  It is the platform/target's responsibility to either
- * implement the panic behavior they want when a watchdog fires in
- * platform_halt, or to replace the implementation of the watchdog handler with
- * their own appropriate implementation.
- */
-void watchdog_handler(watchdog_t *dog) __NO_RETURN;
-
-zx_status_t watchdog_init(watchdog_t *dog, zx_time_t timeout, const char *name);
-void        watchdog_set_enabled(watchdog_t *dog, bool enabled);
-void        watchdog_pet(watchdog_t *dog);
+typedef struct watch_dog {
+    timer_t hw_watchdog_timer;
+    bool pet_wdog;
+    zx_time_t hw_watchdog_pet_timeout;
+    zx_time_t hw_watchdog_bark_timeout;
+    thread_t wdog_thread;
+    thread_t* t;
+    cpu_mask_t cpumask;
+    event_t wdog_event;
+    int timer_irq;
+    vaddr_t hw_watchdog_base;
+} watch_dog_t;
 
 /* HW watchdog support.  This is nothing but a simple helper used to
  * automatically dismiss a platform's HW watchdog using LK timers.  Platforms
  * must supply
  *
  * platform_watchdog_init
- * platform_watchdog_set_enabled
  * platform_watchdog_pet
  *
  * in order to use the HW watchdog helper functions.  After initialized, users
@@ -58,10 +48,13 @@ void        watchdog_pet(watchdog_t *dog);
  * something managed to break timers on LK.
  */
 
-extern zx_status_t platform_watchdog_init(zx_time_t  target_timeout,
-                                          zx_time_t *recommended_pet_period);
+extern zx_status_t platform_watchdog_init(watch_dog_t* wdog);
 extern void platform_watchdog_set_enabled(bool enabled);
-extern void platform_watchdog_pet(void);
-
-zx_status_t watchdog_hw_init(zx_time_t timeout);
+extern void platform_watchdog_pet(watch_dog_t* wdog);
+extern void trigger_wdog_bite(watch_dog_t* wdog);
+extern void wdog_bark_handler(void* args);
+extern void task_for_other_cpus(void* args);
+extern void ping_other_cpus(watch_dog_t* wdog);
+zx_status_t watchdog_hw_init(watch_dog_t* wdog);
+extern int wdog_work(void* args);
 void watchdog_hw_set_enabled(bool enabled);
