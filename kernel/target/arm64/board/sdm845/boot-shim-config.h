@@ -120,6 +120,8 @@ static const dcfg_arm_psci_driver_t psci_driver = {
     .use_hvc = true,
 };
 
+static const dcfg_simple_t dcc_driver = {};
+
 static void append_board_boot_item(zbi_header_t* bootdata) {
     // add CPU configuration
     append_boot_item(bootdata, ZBI_TYPE_CPU_CONFIG, 0, &cpu_config,
@@ -139,4 +141,7 @@ static void append_board_boot_item(zbi_header_t* bootdata) {
 
     append_boot_item(bootdata, ZBI_TYPE_KERNEL_DRIVER, KDRV_ARM_PSCI,
                      &psci_driver, sizeof(psci_driver));
+
+    append_boot_item(bootdata, ZBI_TYPE_KERNEL_DRIVER, KDRV_ARM_DCC,
+                     &dcc_driver, sizeof(dcc_driver));
 }
