@@ -122,6 +122,11 @@ static const dcfg_arm_psci_driver_t psci_driver = {
 
 static const dcfg_simple_t dcc_driver = {};
 
+static const dcfg_simple_t wdog_driver = {
+    .mmio_phys = 0x17980000,
+    .irq = 32,
+};
+
 static void append_board_boot_item(zbi_header_t* bootdata) {
     // add CPU configuration
     append_boot_item(bootdata, ZBI_TYPE_CPU_CONFIG, 0, &cpu_config,
@@ -144,4 +149,7 @@ static void append_board_boot_item(zbi_header_t* bootdata) {
 
     append_boot_item(bootdata, ZBI_TYPE_KERNEL_DRIVER, KDRV_ARM_DCC,
                      &dcc_driver, sizeof(dcc_driver));
+
+    append_boot_item(bootdata, ZBI_TYPE_KERNEL_DRIVER, KDRV_ARM_WATCH_DOG,
+                     &wdog_driver, sizeof(wdog_driver));
 }
