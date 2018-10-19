@@ -119,13 +119,8 @@ static const dcfg_arm_generic_timer_driver_t timer_driver = {
 static const dcfg_arm_psci_driver_t psci_driver = {
     .use_hvc = true,
 };
-
+ 
 static const dcfg_simple_t dcc_driver = {};
-
-static const dcfg_simple_t wdog_driver = {
-    .mmio_phys = 0x17980000,
-    .irq = 32,
-};
 
 static const zbi_platform_id_t platform_id = {
     .vid = PDEV_VID_QCOM,
@@ -155,9 +150,6 @@ static void append_board_boot_item(zbi_header_t* bootdata) {
 
     append_boot_item(bootdata, ZBI_TYPE_KERNEL_DRIVER, KDRV_ARM_DCC,
                      &dcc_driver, sizeof(dcc_driver));
-
-    append_boot_item(bootdata, ZBI_TYPE_KERNEL_DRIVER, KDRV_ARM_WATCH_DOG,
-                     &wdog_driver, sizeof(wdog_driver));
 
     append_boot_item(bootdata, ZBI_TYPE_PLATFORM_ID, 0, &platform_id,
                      sizeof(platform_id));
